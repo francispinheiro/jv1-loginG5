@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<meta http-equiv="Cache-Control" Content="no-cache" />
+		<meta http-equiv="Pragma" Content="no-cache" />
+		<meta http-equiv="Expires" Content="0" />
+
+		<link rel="shortcut icon" href="/images/favicon.ico"
+			type="image/x-icon" />
+		<h:outputStylesheet library="css" name="prism.css" />
+
+		<style>
+@
+keyframes blink-animation {to { visibility:hidden;
+	
+}
+
+}
+@
+-webkit-keyframes blink-animation {to { visibility:hidden;
+	
+}
+
+}
+.quadrat {
+	width: 50px;
+	height: 50px;
+	-webkit-animation: NAME-YOUR-ANIMATION 1s infinite; /* Safari 4+ */
+	-moz-animation: NAME-YOUR-ANIMATION 1s infinite; /* Fx 5+ */
+	-o-animation: NAME-YOUR-ANIMATION 1s infinite; /* Opera 12+ */
+	animation: NAME-YOUR-ANIMATION 1s infinite; /* IE 10+, Fx 29+ */
+}
+
+@
+-webkit-keyframes NAME-YOUR-ANIMATION { 0%, 49% {
+	background-color: rgb(117, 209, 63);
+	border: 3px solid #e50000;
+}
+50%,
+100%
+{
+background-color
+:
+ 
+#e50000
+;
+
+                    
+border
+:
+ 
+3
+px
+ 
+solid
+ 
+rgb
+(117
+,
+209,63);
+}
+}
+</style>
+	</h:head>
+
+	<h:body styleClass="hold-transition login-page">
+
+
+		<div class="login-box">
+			<div class="login-logo">
+				<p:link href="index.xhtml">
+					<img alt="\" src="resources/images/logoM.png" />
+				</p:link>
+			</div>
+
+
+			<div class="logout-box-body">
+				<h:form id="frmBoleto">
+					<p:growl id="growl" showDetail="true" sticky="true"
+						autoUpdate="true" escape="false" />
+
+					<p:panel header="Permissão de Acesso"
+						style="text-align:center;margin-left: 13px;margin-right: 13px;padding-botton:5px; border: 2px solid #5F9EA0;">
+
+						<div class="row">
+							<div class="col-6 col-lg-4">
+								<p:outputLabel value="Usuário: "
+									style="padding-top:5px;text-align:center;display:block;color:#256a72;font-size:16px">
+								</p:outputLabel>
+							</div>
+							<div class="col-12 col-sm-6 col-lg-6">
+								<p:outputLabel value="#{logonMB.usuarioLogado.nome}"
+									style="padding-top:5px;text-align:left;display:block;color:#256a72;font-size:16px"></p:outputLabel>
+							</div>
+						</div>
+
+						<br />
+
+
+						<h:panelGroup layout="block">
+
+							<p:dataTable widgetVar="dtLgADM" var="e"
+								value="#{usuarioEmpresaMB.lstEmpresaAdm}"
+								styleClass="box-danger" rowKey="#{e.id}" id="tbListAccess"
+								emptyMessage="Negado para acesso ao Administrativo">
+
+								<p:column headerText="id" style="width:3%">
+									<p:outputLabel value="#{e.id}"
+										style="font-size:15px;color:#4682B4;text-shadow:1px 1px 1px #000000;text-align:left;display:block" />
+								</p:column>
+
+								<p:column headerText="Empresa(s)" style="width:30%">
+									<p:outputLabel value="#{e.nomeFantasia}"
+										style="font-size:15px;color:#4682B4;text-shadow:1px 1px 1px #000000;text-align:left;display:block" />
+								</p:column>
+
+								<p:column headerText="Acessar" style="width:8%">
+
+									<h:commandLink title="entrar"
+										action="#{usuarioEmpresaMB.filtrarEmpresasDeAcessoCodEmpresa(logonMB.usuarioLogado, e.id)}"
+										ajax="false">
+										<i class="fa fa-sign-in fa-2x"
+											style="font-size: 25px; color: green; text-shadow: 1px 1px 2px #000000; text-align: center; display: block" />
+									</h:commandLink>
+
+
+								</p:column>
+
+							</p:dataTable>
+							<br />
+							<p:separator />
+							<div class="row">
+								<div class="col-12 col-sm-6 col-lg-12 pull-center">
+									<p:commandLink id="logout" action="#{logoutMB.doLogout}"
+										title="Logoff/Saída">
+										<i class="fa fa-sign-out fa-2x"
+											style="font-size: 30px; color: red; text-shadow: 1px 1px 2px #000000; text-align: center; display: block"></i>
+									</p:commandLink>
+								</div>
+							</div>
+
+							<p:spacer width="10px"></p:spacer>
+						</h:panelGroup>
+					</p:panel>
+				</h:form>
+
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Realizando o Download, aguarde" draggable="false"
+					closable="false" resizable="false">
+					<h:graphicImage library="images" name="ajax-loader.gif" />
+				</p:dialog>
+
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			function start() {
+    		PF('statusDialog').show();
+		}
+ 
+		function stop() {
+    		PF('statusDialog').hide();
+		}
+		</script>
+
+	</h:body>
+</f:view>
+</html>

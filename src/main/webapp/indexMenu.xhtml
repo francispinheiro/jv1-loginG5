@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:adm="http://fransys.com.br/adminfaces"
+                template="WEB-INF/templates/template.xhtml">
+<ui:define name="head-end">
+
+ <ui:param name="renderBreadCrumb" value="false"/>
+      <style>
+            .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th {
+                padding: 4px 5px !important;
+                overflow: hidden;
+                border-width: 1px;
+                border-style: solid;
+            }
+        </style>
+
+</ui:define>
+
+<ui:define name="body">
+<p:growl  showDetail="false" autoUpdate="true" closable="true" />
+<h:form id="formIndex">
+	<h3>JASPER_REPORT</h3>
+</h:form>
+
+		  <adm:sidebar collapsed="false"/>
+		
+	<!-- onclick="document.getElementById('au').innerHTML = window.location.href=window.location.href" -->
+
+		<script type="text/javascript">
+			function onTop(args) {
+				window.scrollTo(0, 0);
+				window.location = '#' + args;
+
+			}
+		</script>
+	 
+	</ui:define>
+
+</ui:composition>
+       

@@ -1,0 +1,153 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:adm="http://fransys.com.br/adminfaces"
+                xmlns:b="http://bootsfaces.net/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="head-end">
+        <style type="text/css">
+            .ui-grid-row .ui-grid-col-2,
+            .ui-grid-row .ui-grid-col-10 {
+                padding: 0.5em 0;
+                margin-left: 10px;
+            }
+
+            .ui-orderlist .ui-orderlist-list {
+                height: auto;
+            }
+
+            .ui-orderlist .ui-grid-row .ui-grid-col-2,
+            .ui-orderlist .ui-grid-row .ui-grid-col-10 {
+                padding: 0;
+            }
+            input[disabled] {
+                background-color: #000;
+                color:#fff !important;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="title">
+        Cadastro de Conta Movimento
+    </ui:define>
+
+    <ui:define name="description">
+        edição de dados
+    </ui:define>
+
+    <ui:define name="body">
+        <adm:breadcrumb title="Edição de Modelos"/>
+        <h:form>
+
+            <h:panelGroup layout="block">
+                <p:panel header="Manutenção" styleClass="box-danger">
+ 
+                    <div class="ui-g ui-fluid">
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Identificador" for="inptIdx"/>
+                            <p:inputText id="inptIdx" disabled="true" value="#{contaInternaMB.ctaInt.id}"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <p:outputLabel value="Conta" for="inptNome"/>
+                            <p:inputText id="inptNome" value="#{contaInternaMB.ctaInt.nomeConta}" maxlength="50"/>
+                        </div>
+                        <div class="col-lg-3">
+                            <p:outputLabel value="Tipo" for="inptTipo"/>
+                            <p:selectOneMenu id="inptTipo" value="#{contaInternaMB.ctaInt.tipoConta.id}" >
+                            	<p:ajax listener="#{contaInternaMB.onTipoConta}" />
+                            	<f:selectItem itemLabel="&#160;" itemValue=""/>
+                            	<f:selectItems value="#{contaInternaMB.lstTpConta}" var="listTipos"
+                            						itemValue="#{listTipos.id}"
+                            						itemLabel="#{listTipos.descricao}" />
+                            	
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Data Abertura" for="inptDtAbe"/>    
+                            <p:calendar mask="99/99/9999" style="text-align:center" id="inptDtAbe"
+                             value="#{contaInternaMB.ctaInt.dtAbertura}" pattern="dd/MM/yyyy" size="10" maxlength="10" required="true" requiredMessage="Campo Data de Abertura da Conta. falta informar!" />	
+                       </div>
+                    </div>
+                    
+                    <div class="ui-g ui-fluid" id="detalheLn1">
+                        <div class="col-lg-2">
+                     		<p:outputLabel value="Nº Conta" for="inptNumCta"/>
+                          	<p:inputText id="inptNumCta" value="#{contaInternaMB.ctaInt.numConta}" maxlength="17"/>                          
+                        </div>  
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Data Saldo Inicial" for="inptDtInicioSaldo"/>    
+                            <p:calendar mask="99/99/9999" style="text-align:center" id="inptDtInicioSaldo"
+                             value="#{contaInternaMB.ctaInt.dtSaldoInicial}" pattern="dd/MM/yyyy" size="10" maxlength="10" required="true" requiredMessage="Campo Data Inicio do Saldo. falta informar!" />	
+                        </div>                                             
+                        <div class="col-lg-2">
+                     		<p:outputLabel value="R$ Inicial" for="inptVlrSdoInicial"/>
+                          	<p:inputText id="inptVlrSdoInicial" value="#{contaInternaMB.ctaInt.vlrSaldoInicial}" maxlength="17"/>                          
+                        </div>                                  
+                    </div>
+
+                <div class="ui-g ui-fluid" style="padding-top: 15px;">
+                    <div class="col-lg-6">
+                        <p:panel header="Criação" styleClass="box-danger"  widgetVar="panelControle">
+                            <div class="ui-g ui-fluid">
+                                <div class="col-lg-3">
+                                    <p:outputLabel value="Data" for="inptCriacao"/>
+                                    <p:inputText id="inptCriacao" disabled="true" value="#{contaInternaMB.ctaInt.dtCriacao}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                                    </p:inputText>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p:outputLabel value="Usuário" for="inptUsuCriacao"/>
+                                    <p:inputText id="inptUsuCriacao" disabled="true" value="#{contaInternaMB.ctaInt.usuario.nomeUser}"/>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </div>
+                    <div class="col-lg-6">
+                        <p:panel header="Alteração" styleClass="box-danger"  widgetVar="panelAlteracao">
+                            <div class="ui-g ui-fluid">
+                                <div class="col-lg-3">
+                                    <p:outputLabel value="Data" for="inptAlteracao"/>
+                                    <p:inputText id="inptAlteracao" disabled="true" value="#{contaInternaMB.ctaInt.dtAlteracao}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                                    </p:inputText>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p:outputLabel value="Usuário" for="inptUsuAlteracao"/>
+                                    <p:inputText id="inptUsuAlteracao" disabled="true" value="#{contaInternaMB.ctaInt.usuario.nomeUser}"/>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </div>
+                </div>
+
+                <f:facet name="footer">
+                    <div class="align-right" style="padding: 5px;">
+
+                        <p:commandButton value="Salvar" action="#{contaInternaMB.update}"
+                                         update="@form" styleClass="btn-danger"/>
+                        <p:spacer height="5"/>
+                        <p:commandButton id="btRemove" value="Apagar" 
+                                         update="@form" styleClass="btn-danger"/>
+
+                        <p:spacer height="5"/>
+                        <p:commandButton value="Voltar" action="#{contaInternaMB.btnBack}"
+                                         styleClass="btn-danger"/> 
+                                         
+                        <p:spacer height="5"/>
+                       
+							<h:commandLink>
+							<p:fileDownload value="#{contaInternaMB.rltContasInternas}" />
+							<h:graphicImage library="images" name="pdf.png"
+							title="Imprimir PDF" />
+					</h:commandLink>                                       
+                    </div>
+                </f:facet>
+            </p:panel>
+            </h:panelGroup>
+            <br/>        
+        </h:form>
+    </ui:define>
+</ui:composition>

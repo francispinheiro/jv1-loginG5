@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Administrativo</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta name="author" ></meta>
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 330px;
+                padding: 15px;
+            }
+            
+        </style>
+    </h:head>
+    <h:body style="padding-top: 60px; background-color: #add;">
+       <h:form>
+       <p:messages />
+       		<h:panelGroup layout="block">
+                <p:panel header="Manutenção" styleClass="box-danger">
+
+                    <div class="ui-g ui-fluid">
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Identificador" for="inptIdx"/>
+                            <p:inputText id="inptIdx" disabled="true" value="#{bancosMB.bancos.id}"/>
+                        </div>
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Cód.Febraban" for="inptCodFebraban"/>
+                            <p:inputText id="inptCodFebraban" value="#{bancosMB.bancos.codigoFebraban}" maxlength="3"/>
+                        </div>
+                        <div class="col-lg-5">
+                            <p:outputLabel value="Banco" for="inptNomeBanco"/>
+                            <p:inputText id="inptNomeBanco" value="#{bancosMB.bancos.nomeBanco}" maxlength="70"/>
+                        </div>
+                    </div>
+
+                    <f:facet name="footer">
+                        <div class="align-right" style="padding: 5px;">
+
+                            <p:commandButton value="Salvar" action="#{bancosMB.update}"
+                                             update="@form" styleClass="btn-danger"/>
+                            <p:spacer height="5"/>
+                            <p:commandButton id="btRemove" value="Apagar" action="#"
+                                             update="@form" styleClass="btn-danger"/>
+
+                            <p:spacer height="5"/>
+                            <p:commandButton value="Voltar" action="#"
+                                             styleClass="btn-danger"/>
+                        </div>
+                    </f:facet>
+                </p:panel>
+            </h:panelGroup>
+       </h:form>
+    </h:body>
+</html>

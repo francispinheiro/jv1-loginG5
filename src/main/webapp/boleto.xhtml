@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:adm="http://fransys.com.br/adminfaces"
+                xmlns:b="http://bootsfaces.net/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+<f:view contentType="text/html">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+        <h:outputStylesheet library="css" name="prism.css"/>
+
+        <style>
+  
+            @keyframes blink-animation {
+                to {
+                    visibility: hidden;
+                }
+            }
+            @-webkit-keyframes blink-animation {
+                to {
+                    visibility: hidden;
+                }
+
+            }
+
+            .quadrat {
+                width: 50px;
+                height: 50px;
+                -webkit-animation: NAME-YOUR-ANIMATION 1s infinite; /* Safari 4+ */
+                -moz-animation:    NAME-YOUR-ANIMATION 1s infinite; /* Fx 5+ */
+                -o-animation:      NAME-YOUR-ANIMATION 1s infinite; /* Opera 12+ */
+                animation:         NAME-YOUR-ANIMATION 1s infinite; /* IE 10+, Fx 29+ */
+            }
+
+            @-webkit-keyframes NAME-YOUR-ANIMATION {
+                0%, 49% {
+                    background-color: rgb(117,209,63);
+                    border: 3px solid #e50000;
+                }
+                50%, 100% {
+                    background-color: #e50000;
+                    border: 3px solid rgb(117,209,63);
+                }
+            }
+        </style>
+    </h:head>
+
+    <h:body styleClass="hold-transition login-page">
+        
+		
+        <div class="login-box">
+            <div class="login-logo">
+                <p:link href="index.xhtml"><img alt="\" src="resources/images/logo.png" /></p:link>
+            </div>
+
+        
+            <div class="login-box-body">
+                <h:form id="frmBoleto">      
+                
+        						              
+                    <p:panel header="Gerador de Boleto" style="text-align:center;margin-left: 13px;margin-right: 13px;padding-botton:5px; border: 2px solid #5F9EA0;">
+						
+<!-- 						<h:inputHidden value="#{boletoFinMB.numNotaFiscal}" ></h:inputHidden> -->
+												<div class="row">
+							<div class="col-6 col-lg-1">
+								<span> <i class="fa fa-newspaper-o" />
+								</span>
+							</div>
+							<div class="col-12 col-sm-6 col-lg-10">
+								<p:inputText value="#{boletoFinMB.numNotaFiscal}"
+									style="width:100%" placeholder="Nota Fiscal"
+									required="true"
+									requiredMessage="Você esqueceu! Por favor, informe o número da nota fiscal"></p:inputText>
+							</div>
+						</div>
+						
+						<f:facet name="footer">
+                    		<div class="align-right" style="padding: 5px;">                                         
+                       			<p:spacer height="5"/>
+                       			
+								<h:commandLink>
+									<p:fileDownload value="#{boletoFinMB.rltContasInternas}" />
+									<h:graphicImage library="images" name="pdf.png"
+									title="Imprimir PDF" />
+								</h:commandLink>                                       
+                    		</div>
+                		</f:facet>
+					</p:panel>                                       
+                </h:form>
+            </div>            
+        </div>
+    </h:body>
+</f:view>
+</html>

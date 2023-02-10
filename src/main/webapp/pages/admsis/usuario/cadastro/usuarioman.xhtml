@@ -1,0 +1,198 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:adm="http://fransys.com.br/adminfaces"
+                xmlns:b="http://bootsfaces.net/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="head-end">
+        <style type="text/css">
+            .ui-grid-row .ui-grid-col-2,
+            .ui-grid-row .ui-grid-col-10 {
+                padding: 0.5em 0;
+                margin-left: 10px;
+            }
+
+            .ui-orderlist .ui-orderlist-list {
+                height: auto;
+            }
+
+            .ui-orderlist .ui-grid-row .ui-grid-col-2,
+            .ui-orderlist .ui-grid-row .ui-grid-col-10 {
+                padding: 0;
+            }
+            input[disabled] {
+                background-color: #000;
+                color:#fff !important;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="title">
+        Cadastro de Cliente Usuário
+    </ui:define>
+
+    <ui:define name="description">
+        edição de dados
+    </ui:define>
+
+    <ui:define name="body">
+        <adm:breadcrumb title="Edição de Modelos"/>
+        <h:form>
+
+            <h:panelGroup layout="block">
+                <p:panel header="Manutenção" styleClass="box-danger">
+ 
+                    <div class="ui-g ui-fluid">
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Identificador" for="inptIdx"/>
+                            <p:inputText id="inptIdx" disabled="true" value="#{usuarioMB.usuario.id}"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <p:outputLabel value="Nome" for="inptNome"/>
+                            <p:inputText id="inptNome" value="#{usuarioMB.usuario.nomeUser}" maxlength="50"/>
+                        </div>
+                        <div class="col-lg-2">
+                            <p:outputLabel value="CPF" for="inptCpf"/>
+                            <p:inputText id="inptCpf" value="#{usuarioMB.usuario.cpfUser}" maxlength="11"/>
+                        </div>
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Data Nascimento" for="inptDtNasc"/>    
+                            <p:calendar mask="99/99/9999" style="text-align:center" id="inptDtNasc"
+                             value="#{usuarioMB.usuario.dtNascUser}" pattern="dd/MM/yyyy" size="10" maxlength="10" required="true" requiredMessage="Campo Data vencimento. falta informar!" />	
+                       </div>
+                    </div>
+                    
+                    <div class="ui-g ui-fluid" id="detalheLn1">
+                        <div class="col-lg-4">
+                     		<p:outputLabel value="E-mail de Contato" for="inptEmailContato"/>
+                          	<p:inputText id="inptEmailContato" value="#{usuarioMB.usuario.emailUser}" maxlength="60" validatorMessage="e-mail inválido">
+                                <f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+                            </p:inputText>
+                            <p:message for="inptEmailContato" />
+                        </div>
+                        <div class="col-lg-4">
+                     		<p:outputLabel value="E-mail de Recuperação" for="inptEmailRecupera"/>
+                          	<p:inputText id="inptEmailRecupera" value="#{usuarioMB.usuario.emailRecUser}" maxlength="60" validatorMessage="e-mail inválido">
+                                <f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+                            </p:inputText>
+                            <p:message for="inptEmailRecupera" />
+                        </div>
+                         <div class="col-lg-2">
+                            <p:outputLabel value="Celular nº" for="inptCelular"/>    
+                            <p:inputMask mask="(99) 9.9999-9999" id="inptCelular" value="#{usuarioMB.usuario.numCelularUser}"></p:inputMask>                    
+                            
+                        </div>
+                        <div class="col-lg-2">
+                            <p:outputLabel for="inptAtivo" value="Ativo"/>
+                            <p:selectBooleanButton id="inptAtivo" class="btn-info"
+                                                   value = "#{usuarioMB.usuario.cadAtivoUser}"
+                                                   onLabel="Sim"
+                                                   offLabel="Não"
+                                                   onIcon="ui-icon-check"
+                                                   offIcon="ui-icon-close"/>
+                        </div>                                                
+                    </div>
+
+                   <div class="ui-g ui-fluid" id="detalheLn2">
+                        <div class="col-lg-4">
+                     		<p:outputLabel value="Forma de Pagamento" for="inptFormaPgto"/>
+                          	<p:inputText id="inptFormaPgto" value="#{usuarioMB.usuario.formaPgto}" maxlength="35"/>                          
+                        </div>                                               
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Dia Vcto" for="inptDiaVcto"/>    
+                            <p:inputText id="inptDiaVcto" value="#{usuarioMB.usuario.diaVencto}" maxlength="2"/>                                                
+                        </div>
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Qtd Período" for="inptQtdPeriodo"/>    
+                            <p:inputText id="inptQtdPeriodo" value="#{usuarioMB.usuario.qtdMesPeriodo}" maxlength="2"/>                                                
+                        </div>
+                        <div class="col-lg-2">
+                            <p:outputLabel value="Inicio Vip" for="inptDtIniVip"/>    
+                                 <p:calendar mask="99/99/9999" style="text-align:center" id="inptDtIniVip"
+                             value="#{usuarioMB.usuario.dtInicioVip}" pattern="dd/MM/yyyy" size="10" maxlength="10" required="true" requiredMessage="Campo Data vencimento. falta informar!" />
+                                                                                         
+                        </div>
+                        <div class="col-lg-2">
+                            <p:outputLabel for="inptVip" value="Vip"/>
+                            <p:selectBooleanButton id="inptVip" class="btn-info"
+                                                   value = "#{usuarioMB.usuario.vipAtivo}"
+                                                   onLabel="Sim"
+                                                   offLabel="Não"
+                                                   onIcon="ui-icon-check"
+                                                   offIcon="ui-icon-close"/>
+                        </div>                                                
+                    </div>
+
+
+ 					<div class="ui-g ui-fluid" id="detalheLn3" >
+           				<div class="col-lg-4">
+                     		<p:outputLabel value="Login" for="inptLogin"/>
+                          	<p:inputText id="inptLogin" value="#{usuarioMB.usuario.loginUser}" maxlength="20" >
+                           </p:inputText>                       
+                        </div>
+                        <div class="col-lg-4">
+                     		<p:outputLabel value="Senha" for="inptSenha"/>
+                          	<p:inputText id="inptSenha" value="#{usuarioMB.usuario.senhaUser}" maxlength="20" >
+                           </p:inputText>                       
+                        </div>                        
+                    </div>
+
+
+                <div class="ui-g ui-fluid" style="padding-top: 15px;">
+                    <div class="col-lg-6">
+                        <p:panel header="Criação" styleClass="box-danger"  widgetVar="panelControle">
+                            <div class="ui-g ui-fluid">
+                                <div class="col-lg-3">
+                                    <p:outputLabel value="Data" for="inptCriacao"/>
+                                    <p:inputText id="inptCriacao" disabled="true" value="#{usuarioMB.usuario.dtCriacao}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                                    </p:inputText>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p:outputLabel value="Usuário" for="inptUsuCriacao"/>
+                                    <p:inputText id="inptUsuCriacao" disabled="true" value=""/>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </div>
+                    <div class="col-lg-6">
+                        <p:panel header="Alteração" styleClass="box-danger"  widgetVar="panelAlteracao">
+                            <div class="ui-g ui-fluid">
+                                <div class="col-lg-3">
+                                    <p:outputLabel value="Data" for="inptAlteracao"/>
+                                    <p:inputText id="inptAlteracao" disabled="true" value="#{usuarioMB.usuario.dtAlteracao}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                                    </p:inputText>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p:outputLabel value="Usuário" for="inptUsuAlteracao"/>
+                                    <p:inputText id="inptUsuAlteracao" disabled="true" value=""/>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </div>
+                </div>
+
+                <f:facet name="footer">
+                    <div class="align-right" style="padding: 5px;">
+
+                        <p:commandButton value="Salvar" action="#{usuarioMB.update}"
+                                         update="@form" styleClass="btn-danger"/>
+                        <p:spacer height="5"/>
+                        <p:commandButton id="btRemove" value="Apagar" 
+                                         update="@form" styleClass="btn-danger"/>
+
+                        <p:spacer height="5"/>
+                        <p:commandButton value="Voltar" action="#{usuarioMB.btnBack}"
+                                         styleClass="btn-danger"/>
+                    </div>
+                </f:facet>
+            </p:panel>
+            </h:panelGroup>
+            <br/>        
+        </h:form>
+    </ui:define>
+</ui:composition>

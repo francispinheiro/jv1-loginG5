@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contas" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ccc1f9a8-f0cf-4b05-9c85-169831a940d3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Financeiro GP"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="usuoid" class="java.lang.Integer">
+		<parameterDescription><![CDATA[Usuário]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[select c.contioid, c.conti_nome, t.enum_nome, 
+	   c.conti_dt_criacao, c.conti_saldo_inicial, u.usu_nome, u.usuoid
+	from cta_interna c, 
+		 usuario u,
+		 enum_tipo_conta_interna t
+		where 
+			c.conti_usuoid = u.usuoid
+			and t.enumoid  = c.conti_tipo_conta 
+			and u.usuoid   = $P{usuoid}]]>
+	</queryString>
+	<field name="contioid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="contioid"/>
+	</field>
+	<field name="conti_nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="conti_nome"/>
+	</field>
+	<field name="enum_nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="enum_nome"/>
+	</field>
+	<field name="conti_dt_criacao" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="conti_dt_criacao"/>
+	</field>
+	<field name="conti_saldo_inicial" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="conti_saldo_inicial"/>
+	</field>
+	<field name="usu_nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="usu_nome"/>
+	</field>
+	<field name="usuoid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="usuoid"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="d40c5356-cc8d-4d03-aca0-c7c078370719"/>
+				<staticText>
+					<reportElement x="20" y="20" width="333" height="43" forecolor="#FFFFFF" uuid="371482b3-3dd0-4fff-a278-56a7ed36cbc1"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listagem de Contas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="ce586ee6-60de-410a-9234-f239b87cf83c"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[caixas e bancos]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="1b870b5b-9a25-434d-b5c1-39bc0ffc26ab"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="45" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4a49857d-7154-48e7-86b6-e75eb8e3e904"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="45" y="0" width="233" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ec85509a-3094-4f31-8e00-7f8bd714d43e"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Conta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="278" y="0" width="91" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="69c63c2e-07b5-4e74-8bc1-5b279b840997"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo Inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="0" width="73" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="98b33e8e-3c15-488d-b223-94b5c717467b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dt Cadastro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ea598454-4498-4a9e-b4d2-86a9ae60422f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuário	]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="02f2865a-abee-4fb7-98aa-4cac88a483ed"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="45" height="20" uuid="0c8ad9ce-49d3-4c21-af56-d4a6e1f99ba6"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contioid}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="45" y="0" width="225" height="20" uuid="94871f37-086a-4458-81be-b5443bcfdcd8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conti_nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="283" y="0" width="81" height="20" uuid="983476a4-0f04-405c-bb38-214eca751827"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conti_saldo_inicial}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement x="370" y="0" width="73" height="20" uuid="91b9353c-7ddc-468b-8d61-c799fa128067"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conti_dt_criacao}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement x="444" y="0" width="111" height="20" uuid="4effcb49-0b83-4150-b820-5fa97fbccb2f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usu_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="cc5996a3-7f19-4f54-b2a8-600969c11d47"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="e687d700-e01d-4203-bbb3-e8fefa47ae8f"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="b0a9f201-1cef-47ed-a913-8697aab9b01b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

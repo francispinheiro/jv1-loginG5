@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ul class="sidebar-menu">
+        <li>
+            <p:link href="/index.xhtml">
+                <i class="fa fa-home"/>
+                <span>Início</span>
+            </p:link>
+        </li>
+  
+         <li class="header">
+            Global5
+        </li>
+      
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-crosshairs"/>
+                    <span>Gerenciar</span>
+                    <span class="pull-right-container">
+                     <i class="fa fa-angle-left pull-right"/>
+                </span>
+                </a>
+
+                <ul class="treeview-menu">
+
+                    <li>
+                        <p:link href="/pages/finan/cad/contas/contalst.xhtml">
+                         <i class="fa fa-bank"/>
+                         <span>Contas</span>
+                         </p:link>
+                    </li>
+ 
+                </ul> <!-- final menu Gerenciar -->
+            </li>  <!-- final menu Gerenciar -->
+
+    </ul>
+
+    <script>
+        $('body').addClass('skin-blue-light');
+    </script>
+</ui:composition>
