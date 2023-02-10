@@ -17,6 +17,7 @@ import java.util.List;
  * UsuarioService ( Regras de Negócio )
  * @author zielinski
  * @date 2017-03-01 15:50
+ * update by FrancisBueno em 2023-02-10
  */
 
 public class UsuarioService extends CrudService<Usuario> {
